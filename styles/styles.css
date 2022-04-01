@@ -1,0 +1,61 @@
+*{ 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: oblique;
+}
+
+h1{
+  color: rgb(226, 226, 14);
+ 
+}
+
+.game-intro{
+  height: 100px;
+  background-color: darkgoldenrod;
+  text-decoration: underline;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+
+.start-button{
+  height: 60px;
+  width: 150px;
+  border-radius: 5%;
+  background-color: beige;
+  
+transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+text-decoration: none;
+overflow: hidden;
+cursor: pointer;
+
+}
+
+
+.start-button:after {
+  content: "";
+  background: #e9ee90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.start-button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+#canvas{
+  background-color: #e9ee90;
+  
+  
+}
