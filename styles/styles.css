@@ -8,6 +8,10 @@ h1{
  
 }
 
+#game-board {
+  background: url('../images/Initialbackground.jpg');
+}
+
 .game-intro{
   height: 100px;
   background-color: darkgoldenrod;
@@ -56,6 +60,13 @@ cursor: pointer;
 
 #canvas{
   background-color: #e9ee90;
-  
-  
+ 
+}
+
+div img {
+  max-width: 100%;
+}
+
+.hidden{
+  display: none;
 }
