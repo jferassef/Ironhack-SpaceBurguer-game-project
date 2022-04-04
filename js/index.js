@@ -19,6 +19,7 @@ const ctx = canvas.getContext("2d");
 console.log("Hey");
 
 let avatar;
+let intervalId;
 function startGame() {
   avatar = new Avatar(canvas, ctx);
   createEventListeners();
@@ -28,6 +29,7 @@ function startGame() {
 function update() {
   clear();
   avatar.draw();
+  intervalId = requestAnimationFrame(update);
 }
 
 function clear() {
