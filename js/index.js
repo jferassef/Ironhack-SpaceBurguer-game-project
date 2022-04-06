@@ -1,12 +1,3 @@
-//adding ingredients
-const ingredients = [
-  { name: "tomatoe", img: "tomatoe.png" },
-  { name: "cheese", img: "cheese.png" },
-  { name: "bread", img: "bread.png" },
-];
-
-// add bad elements
-
 document.querySelector(".start-button").addEventListener("click", () => {
   const game = new Game();
   game.start();
@@ -18,9 +9,10 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
     this.moveSpeed = 1;
-    this.spawnInterval = (4 * 80) / this.moveSpeed;
+    this.spawnInterval = 3 * this.fps;
     this.avatar = new Avatar(this.canvas, this.ctx);
     this.ingr = new Ingredients(this.canvas, this.ctx, this.moveSpeed);
+    this.timer = 0;
   }
 
   start() {
@@ -31,10 +23,14 @@ class Game {
 
   update() {
     console.log("update");
+    this.timer++;
     this.clear();
     this.avatar.draw();
     this.ingr.draw();
     this.ingr.move();
+    if (this.timer % this.spawnInterval === 0) {
+      this.ingr.addRandomIngredient();
+    }
   }
 
   clear() {

@@ -6,7 +6,7 @@ class Avatar {
     this.canvas = canvas;
     this.ctx = ctx;
     this.image = null;
-    this.avatarSpeed = 2;
+    this.avatarSpeed = 5;
     this.y = this.canvas.height - (this.height + 50);
     this.x = (this.canvas.width - this.width) / 2;
     this.init();
