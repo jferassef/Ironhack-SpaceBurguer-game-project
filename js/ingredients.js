@@ -46,8 +46,6 @@ class Ingredients {
     this.ctx = ctx;
     this.ingredients = [];
     this.moveSpeed = moveSpeed;
-    this.maxX = canvas.width - this.width;
-    this.maxY = canvas.height - this.height;
     this.addRandomIngredient();
   }
 
@@ -66,11 +64,13 @@ class Ingredients {
 
   addRandomIngredient() {
     const idx = Math.floor(Math.random() * this.ingredientsModel.length);
-    const x = Math.floor(Math.random() * this.maxX);
+    const baseIng = this.ingredientsModel[idx];
+    const maxX = this.canvas.width - baseIng.width;
+    const x = Math.floor(Math.random() * maxX);
     const ing = {
-      ...this.ingredientsModel[idx],
+      ...baseIng,
       x,
-      y: -this.height,
+      y: -baseIng.height,
     };
     this.ingredients.push(ing);
   }
@@ -90,7 +90,7 @@ class Ingredients {
       switch (ing.type) {
         case "image":
           // console.log(ing);
-          this.ctx.drawImage(ing.img, ing.x, ing.y, this.width, this.height);
+          this.ctx.drawImage(ing.img, ing.x, ing.y, ing.width, ing.height);
           break;
         default:
           break;
