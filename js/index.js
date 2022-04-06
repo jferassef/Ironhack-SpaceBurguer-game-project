@@ -1,6 +1,8 @@
-document.querySelector(".start-button").addEventListener("click", () => {
+document.querySelector("#start-button").addEventListener("click", () => {
   const game = new Game();
   game.start();
+  document.querySelector("#start-button").classList.add('hidden')
+  document.querySelector("#pause-button").classList.remove('hidden')
 });
 
 class Game {
@@ -8,8 +10,8 @@ class Game {
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
-    this.moveSpeed = 1;
-    this.spawnInterval = 3 * this.fps;
+    this.moveSpeed = 5;
+    this.spawnInterval = 1 * this.fps;
     this.avatar = new Avatar(this.canvas, this.ctx);
     this.ingr = new Ingredients(this.canvas, this.ctx, this.moveSpeed);
     this.floor = {
@@ -40,14 +42,11 @@ class Game {
       console.debug("Win");
       alert("win");
     }
-    if (this.breadCurrent.length === this.breadGoal.length) {
+    if (this.breadCurrent.length === this.breadGoal.length + 1) {
       this.lengthBreadGoal++;
       this.init();
     }
     this.timer++;
-    this.clear();
-    this.avatar.draw();
-    this.ingr.draw();
     this.ingr.move();
     const nextIngr = [];
     for (const ingred of this.ingr.ingredients) {
@@ -67,6 +66,38 @@ class Game {
     if (this.timer % this.spawnInterval === 0) {
       this.ingr.addRandomIngredient();
     }
+
+    
+    this.clear();
+
+    this.drawGoal();
+    this.avatar.draw();
+    this.ingr.draw();
+  }
+
+  drawGoal() {
+    let startY = 0;
+    this.breadGoal.slice().reverse().forEach((ingred) => {
+      switch (ingred.type) {
+        case "image":
+          this.ctx.drawImage(ingred.img, 10, startY, ingred.width, ingred.height);
+          startY += ingred.height + 5;
+          break;
+        default:
+          break;
+      }
+    });
+    this.breadCurrent.slice().reverse().forEach((ingred) => {
+      console.log('>>>>',ingred);
+      switch (ingred.type) {
+        case "image":
+          this.ctx.drawImage(ingred.img, this.canvas.width - ingred.width - 10, startY, ingred.width, ingred.height);
+          startY += ingred.height + 5;
+          break;
+        default:
+          break;
+      }
+    });
   }
 
   clear() {

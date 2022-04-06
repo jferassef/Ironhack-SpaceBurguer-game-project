@@ -63,10 +63,11 @@ class Ingredients {
   }
 
   addRandomIngredient() {
+    const percent = 0.8;
     const idx = Math.floor(Math.random() * this.ingredientsModel.length);
     const baseIng = this.ingredientsModel[idx];
     const maxX = this.canvas.width - baseIng.width;
-    const x = Math.floor(Math.random() * maxX);
+    const x = Math.floor((Math.random() * percent + (1 - percent) / 2) * maxX);
     const ing = {
       ...baseIng,
       x,
