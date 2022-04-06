@@ -1,11 +1,12 @@
 class Avatar {
+  width = 60;
+  height = 100;
+
   constructor(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.image = null;
     this.avatarSpeed = 2;
-    this.width = 80;
-    this.height = 100;
     this.y = this.canvas.height - (this.height + 50);
     this.x = (this.canvas.width - this.width) / 2;
     this.init();
@@ -19,6 +20,19 @@ class Avatar {
   draw() {
     if (this.image) {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+  }
+
+  move(key) {
+    switch (key) {
+      case "ArrowRight":
+        this.moveRight();
+        break;
+      case "ArrowLeft":
+        this.moveLeft();
+        break;
+      default:
+        break;
     }
   }
 

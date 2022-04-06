@@ -1,58 +1,65 @@
 //adding ingredients
-/* const ingredients [
-  {name:cheese,
-  img:"images\cheese.png",
-  good: true,
-},
-{name:bread,
-  img:"images\bread.png",
-  good: true,
-},
-{name:tomatoe,
-  img:"images\tomatoe.png",
-  good: true,
-},
-{name:meat,
-  img:"images\meat.png",
-  good: true,
+
+function getImage(name) {
+  const img = new Image();
+  img.src = `images/${name}`;
+  return img;
 }
 
-// add bad elements
-] */
-
 class Ingredients {
-  constructor(canvas, ctx, ingredients) {
+  ingredientsModel = [
+    { type: "image", name: "tomatoe", img: getImage("tomatoe.png") },
+    { type: "image", name: "cheese", img: getImage("cheese.png") },
+    { type: "image", name: "bread", img: getImage("bread.png") },
+  ];
+
+  width = 30;
+  height = 30;
+
+  constructor(canvas, ctx, moveSpeed) {
     this.canvas = canvas;
     this.ctx = ctx;
-    this.ingredients = this.ingredients;
-    this.pickedIngredients = [];
-    this.image = null;
-    this.ingredientsSpeed = 2;
-    this.width = 30;
-    this.height = 80;
-    this.y = this.canvas.height;
-    this.x = this.canvas.width;
-    this.init();
+    this.ingredients = [];
+    this.moveSpeed = moveSpeed;
+    this.maxX = canvas.width - this.width;
+    this.maxY = canvas.height - this.height;
+    this.addRandomIngredient();
   }
 
-  // method for ingredients that will fall randomly
-  fallingIngredients() {
-    let randomIngredients = [];
-    for (let i = 0; i < this.ingredients.length; i++) {
-      pickRandom = Math.floor(Math.random() * this.ingredients[i].length);
-      randomIngredients.push(pickRandom);
-    }
+  addRandomIngredient() {
+    const idx = Math.floor(Math.random() * this.ingredientsModel.length);
+    const x = Math.floor(Math.random() * this.maxX);
+    const ing = {
+      ...this.ingredientsModel[idx],
+      x,
+      y: -this.height,
+    };
+    this.ingredients.push(ing);
+  }
+
+  move() {
+    console.log("move");
+    this.ingredients = this.ingredients.map((ing) => ({
+      ...ing,
+      y: ing.y + this.moveSpeed,
+    }));
+    // this.ingredients = this.ingredients.map(({y, ...props}) => ({...props, y: y + 1}));
+  }
+
+  draw() {
+    console.log("draw");
+    this.ingredients.forEach((ing) => {
+      switch (ing.type) {
+        case "image":
+          console.log(ing);
+          this.ctx.drawImage(ing.img, ing.x, ing.y, this.width, this.height);
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 
   // ingredients will only move along y
-  move() {
-    this.y += this.moveSpeed;
-  }
-  /* pickingIngredients() {
-    for (let i = 0; i < ingredients.length; i++) {
-      // will push the picked ingredients to the array, if they touch the plate
-
-      this.pickedIngredients.push(this.ingredients[i]);
-    }
-  }*/
 }
