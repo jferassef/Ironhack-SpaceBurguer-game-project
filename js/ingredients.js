@@ -1,5 +1,6 @@
 //adding ingredients
 
+// will call later this function to display images
 function getImage(name) {
   const img = new Image();
   img.src = `images/${name}`;
@@ -7,6 +8,8 @@ function getImage(name) {
 }
 
 class Ingredients {
+  // Variables of the class(Ingredients)
+  // array of ingredients inside the bread, to make the order logic after
   ingredientsInsideBreadModel = [
     {
       type: "image",
@@ -30,6 +33,8 @@ class Ingredients {
       height: 30,
     },
   ];
+
+  // all the ingredients in game to draw them and make them fall
   ingredientsModel = [
     ...this.ingredientsInsideBreadModel,
     {
@@ -49,6 +54,7 @@ class Ingredients {
     this.addRandomIngredient();
   }
 
+  // Creating the burguer goal with ingredients inside the bread
   createGoalBread(amountOfIng) {
     const insideIng = [];
     insideIng.push(this.ingredientsModel[this.ingredientsModel.length - 1]);
@@ -63,11 +69,11 @@ class Ingredients {
   }
 
   addRandomIngredient() {
-    const percent = 0.8;
-    const idx = Math.floor(Math.random() * this.ingredientsModel.length);
-    const baseIng = this.ingredientsModel[idx];
-    const maxX = this.canvas.width - baseIng.width;
-    const x = Math.floor((Math.random() * percent + (1 - percent) / 2) * maxX);
+    const percent = 0.8; // % of the canvas
+    const idx = Math.floor(Math.random() * this.ingredientsModel.length); // index of the random ing
+    const baseIng = this.ingredientsModel[idx]; // random ing
+    const maxX = this.canvas.width - baseIng.width; // creating boundries
+    const x = Math.floor((Math.random() * percent + (1 - percent) / 2) * maxX); // centralizing the choosen percent of the canvas where the ingredients will fall, margin
     const ing = {
       ...baseIng,
       x,
@@ -76,15 +82,15 @@ class Ingredients {
     this.ingredients.push(ing);
   }
 
+  // moving ing along y
   move() {
-    console.log("move");
     this.ingredients = this.ingredients.map((ing) => ({
       ...ing,
       y: ing.y + this.moveSpeed,
     }));
-    //this.ingredients = this.ingredients.map(({y, ...props}) => ({...props, y: y + 1}));
   }
 
+  // drawing ingredients, iterate and draw each one
   draw() {
     console.log("draw");
     this.ingredients.forEach((ing) => {
@@ -99,6 +105,7 @@ class Ingredients {
     });
   }
 
+  // collision logic, checking if ingredient is at some point in-beteewn the avatar rect
   static intersects(obj, ingr) {
     const minX = obj.x;
     const minY = obj.y;
@@ -106,10 +113,10 @@ class Ingredients {
     const maxY = obj.y + obj.height;
     const withinX = minX <= ingr.x && ingr.x + ingr.width <= maxX;
     const withinY = minY <= ingr.y && ingr.y + ingr.height <= maxY;
-    console.log({ minX, minY, maxX, maxY, withinX, withinY, ingr });
-    if (withinX && withinY) {
+    //  console.log({ minX, minY, maxX, maxY, withinX, withinY, ingr });
+    /*  if (withinX && withinY) {
       console.debug("intersect");
-    }
+    } */
     return withinX && withinY;
   }
 }

@@ -11,7 +11,7 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
     this.moveSpeed = 5;
-    this.spawnInterval = 1 * this.fps;
+    this.spawnInterval = 1 * this.fps; // interval between ing falling
     this.avatar = new Avatar(this.canvas, this.ctx);
     this.ingr = new Ingredients(this.canvas, this.ctx, this.moveSpeed);
     this.floor = {
@@ -19,30 +19,30 @@ class Game {
       y: this.canvas.height,
       width: Infinity,
       height: Infinity,
-    };
+    }; // ing limit from falling
     this.lengthBreadGoal = 3;
     this.timer = 0;
+    this.score = 0;
   }
 
+  // reset list of goal ing
   init() {
     this.breadGoal = this.ingr.createGoalBread(this.lengthBreadGoal);
-    this.breadCurrent = [];
+    this.breadCurrent = []; // current list on game
   }
 
   start() {
-    console.log("start");
     this.init();
     this.createEventListeners();
     setInterval(() => this.update(), 1000 / this.fps);
   }
 
   update() {
-    console.log("update");
     if (this.lengthBreadGoal === 6) {
       this.breadGoal = [];
-      console.debug("Win");
       alert("win");
     }
+    // next stage condition, make 2 breads the same
     if (this.breadCurrent.length === this.breadGoal.length) {
       this.lengthBreadGoal++;
       this.init();
@@ -52,7 +52,9 @@ class Game {
     const nextIngr = [];
     for (const ingred of this.ingr.ingredients) {
       if (Ingredients.intersects(this.avatar, ingred)) {
+        // when collision check next ingredient on goal
         if (this.breadGoal[this.breadCurrent.length].name === ingred.name) {
+          this.addscore();
           this.breadCurrent.push(ingred);
         } else {
           console.log("loose");
@@ -75,6 +77,7 @@ class Game {
     this.ingr.draw();
   }
 
+  // draw goal burguer, current one, iterate and display ing on y
   drawGoal() {
     let startY = 0;
     this.breadGoal
@@ -100,7 +103,6 @@ class Game {
       .slice()
       .reverse()
       .forEach((ingred) => {
-        console.log(">>>>", ingred);
         switch (ingred.type) {
           case "image":
             this.ctx.drawImage(
@@ -120,6 +122,12 @@ class Game {
 
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  addscore() {
+    this.score++;
+    let scoreCurrent = document.querySelector(".game-score span");
+    scoreCurrent.innerText = this.score * 10;
   }
 
   createEventListeners() {
