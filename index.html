@@ -12,23 +12,26 @@
     <div class="game-intro">
    <h1>Space Burguer</h1>
    <button id="start-button" class="start-button"><p>START</p></button>
-   <button id="pause-button" class="start-button hidden"><p>PAUSE</p></button>
+   <button id="pause-button" class="start-button hidden"><p>Restart</p></button>
    <p class="game-score">Score:<span>0</span></p>
    
   </div>
 
-  <div id="game-board">
-   
+  <div id="game-board"> 
     <canvas id="canvas" width="800" height="700"></canvas>
+    <div class="game-over hidden">
+      <h1>You loose :(</h1>
+      
+     
+    </div>
   </div>
 
-  <div class="game-over hidden">
-    <h1>You loose !</h1>
-    <button>Restart</button>
-  </div>
+ 
+
 
   <script src="js/avatar.js"></script>
   <script src="js/ingredients.js"></script>
+  <script src="js/background.js"></script>
 
 <script type="text/javascript" src="js/index.js"></script>
 

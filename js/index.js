@@ -23,6 +23,7 @@ class Game {
     this.lengthBreadGoal = 3;
     this.timer = 0;
     this.score = 0;
+    this.drawLoose = null;
   }
 
   // reset list of goal ing
@@ -57,8 +58,9 @@ class Game {
           this.addscore();
           this.breadCurrent.push(ingred);
         } else {
-          console.log("loose");
-          alert("loose");
+          // this.gameover();
+          this.drawGameOver();
+          // alert("loose");
           break;
         }
       } else if (!Ingredients.intersects(this.floor, ingred)) {
@@ -128,6 +130,24 @@ class Game {
     this.score++;
     let scoreCurrent = document.querySelector(".game-score span");
     scoreCurrent.innerText = this.score * 10;
+  }
+
+  drawGameOver() {
+    let loose = document.querySelector(".game-over");
+    loose.classList.toggle("hidden");
+    console.log(loose);
+    /*  if (this.drawLoose) {
+      ctx.font = "60px Arial";
+      ctx.fillStyle = "Black";
+      ctx.fillText("GAMEOVER!!!", 100, 100);
+    } */
+  }
+
+  reset() {
+    let restart = document.querySelector(".pause-button");
+    restart.addEventListener("click", function () {
+      game.start();
+    });
   }
 
   createEventListeners() {

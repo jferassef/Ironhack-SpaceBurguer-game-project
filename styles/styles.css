@@ -13,7 +13,7 @@ body {
   overflow: hidden;
 }
 
-h1 {
+.game-intro h1 {
   color: rgb(226, 226, 14);
  
 }
@@ -75,8 +75,9 @@ cursor: pointer;
 
 #canvas{
   background-color: #e9ee90;
-  width: 100%;
+  width: 60%;
   height: 100%;
+  margin-left: 20%;
 }
 
 div img {
@@ -85,4 +86,15 @@ div img {
 
 .hidden{
   display: none;
+}
+
+.game-over{
+  height: 100px;width: 100px;
+position: absolute; top:300px;
+padding-left: 40%;
+font-size: x-large;
+color:black;
+
+
+
 }
