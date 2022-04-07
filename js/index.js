@@ -1,8 +1,8 @@
 document.querySelector("#start-button").addEventListener("click", () => {
   const game = new Game();
   game.start();
-  document.querySelector("#start-button").classList.add('hidden')
-  document.querySelector("#pause-button").classList.remove('hidden')
+  document.querySelector("#start-button").classList.add("hidden");
+  document.querySelector("#pause-button").classList.remove("hidden");
 });
 
 class Game {
@@ -38,11 +38,12 @@ class Game {
 
   update() {
     console.log("update");
-    if (this.lengthBreadGoal === 5) {
+    if (this.lengthBreadGoal === 6) {
+      this.breadGoal = [];
       console.debug("Win");
       alert("win");
     }
-    if (this.breadCurrent.length === this.breadGoal.length + 1) {
+    if (this.breadCurrent.length === this.breadGoal.length) {
       this.lengthBreadGoal++;
       this.init();
     }
@@ -67,7 +68,6 @@ class Game {
       this.ingr.addRandomIngredient();
     }
 
-    
     this.clear();
 
     this.drawGoal();
@@ -77,27 +77,45 @@ class Game {
 
   drawGoal() {
     let startY = 0;
-    this.breadGoal.slice().reverse().forEach((ingred) => {
-      switch (ingred.type) {
-        case "image":
-          this.ctx.drawImage(ingred.img, 10, startY, ingred.width, ingred.height);
-          startY += ingred.height + 5;
-          break;
-        default:
-          break;
-      }
-    });
-    this.breadCurrent.slice().reverse().forEach((ingred) => {
-      console.log('>>>>',ingred);
-      switch (ingred.type) {
-        case "image":
-          this.ctx.drawImage(ingred.img, this.canvas.width - ingred.width - 10, startY, ingred.width, ingred.height);
-          startY += ingred.height + 5;
-          break;
-        default:
-          break;
-      }
-    });
+    this.breadGoal
+      .slice()
+      .reverse()
+      .forEach((ingred) => {
+        switch (ingred.type) {
+          case "image":
+            this.ctx.drawImage(
+              ingred.img,
+              10,
+              startY,
+              ingred.width,
+              ingred.height
+            );
+            startY += ingred.height + 5;
+            break;
+          default:
+            break;
+        }
+      });
+    this.breadCurrent
+      .slice()
+      .reverse()
+      .forEach((ingred) => {
+        console.log(">>>>", ingred);
+        switch (ingred.type) {
+          case "image":
+            this.ctx.drawImage(
+              ingred.img,
+              this.canvas.width - ingred.width - 10,
+              startY,
+              ingred.width,
+              ingred.height
+            );
+            startY += ingred.height + 5;
+            break;
+          default:
+            break;
+        }
+      });
   }
 
   clear() {
