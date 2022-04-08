@@ -52,14 +52,21 @@ class Game {
     if (this.pauseGame) {
       return;
     }
-    if (this.lengthBreadGoal === 6) {
+    if (this.lengthBreadGoal === 4) {
       this.breadGoal = [];
-      alert("win");
+      // alert("win");
+      this.ctx.fillText(
+        "CONGRATS, YOU WIN",
+        this.canvas.width / 2 - 100,
+        this.canvas.height / 2
+      );
+      game.pauseGame = true;
     }
     // next stage condition, make 2 breads the same
     if (this.breadCurrent.length === this.breadGoal.length) {
       this.lengthBreadGoal++;
       this.init();
+      return;
     }
     this.timer++;
     this.ingr.move();
