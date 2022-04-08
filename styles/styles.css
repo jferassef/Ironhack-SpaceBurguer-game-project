@@ -13,9 +13,20 @@ body {
   overflow: hidden;
 }
 
-h1 {
+.game-intro h1 {
   color: rgb(226, 226, 14);
- 
+ padding-top: 20px;
+}
+
+.game-intro img{
+  width: 80px;
+}
+
+.logo{
+  display: flex;
+  text-align: center;
+  column-gap: 20px;
+
 }
 
 #game-board {
@@ -38,6 +49,20 @@ h1 {
 }
 
 
+.reset-button{
+  height: 60px;
+  width: 150px;
+  border-radius: 5%;
+  background-color: beige;
+  
+transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+text-decoration: none;
+overflow: hidden;
+cursor: pointer;
+background-color: #e9ee90;
+}
+
 .start-button{
   height: 60px;
   width: 150px;
@@ -49,11 +74,14 @@ transition-duration: 0.4s;
 text-decoration: none;
 overflow: hidden;
 cursor: pointer;
+background-color: #e9ee90;
 
 }
 
 
-.start-button:after {
+
+
+/* .start-button:after {
   content: "";
   background: #e9ee90;
   display: block;
@@ -72,11 +100,12 @@ cursor: pointer;
   opacity: 1;
   transition: 0s
 }
-
+ */
 #canvas{
   background-color: #e9ee90;
-  width: 100%;
+  width: 60%;
   height: 100%;
+  margin-left: 20%;
 }
 
 div img {
@@ -85,4 +114,15 @@ div img {
 
 .hidden{
   display: none;
+}
+
+.game-over{
+  height: 100px;width: 100px;
+position: absolute; top:300px;
+padding-left: 40%;
+font-size: x-large;
+color:black;
+
+
+
 }

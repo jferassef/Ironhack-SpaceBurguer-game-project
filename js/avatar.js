@@ -6,12 +6,18 @@ class Avatar {
     this.canvas = canvas;
     this.ctx = ctx;
     this.image = null;
-    this.avatarSpeed =25;
+    this.avatarSpeed = 25;
     this.y = this.canvas.height - (this.height + 50);
     this.x = (this.canvas.width - this.width) / 2;
     this.init();
   }
 
+  reset() {
+    this.y = this.canvas.height - (this.height + 50);
+    this.x = (this.canvas.width - this.width) / 2;
+  }
+
+  // image src
   init() {
     this.image = new Image();
     this.image.src = "images/avatar.png";
@@ -23,6 +29,7 @@ class Avatar {
     }
   }
 
+  // moving the avatar
   move(key) {
     switch (key) {
       case "ArrowRight":

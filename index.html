@@ -10,25 +10,34 @@
   </head>
   <body>
     <div class="game-intro">
+      <div class="logo">
+<img src="images/Burger-01.png" alt="burg-logo">
    <h1>Space Burguer</h1>
-   <button id="start-button" class="start-button"><p>START</p></button>
-   <button id="pause-button" class="start-button hidden"><p>PAUSE</p></button>
-   <p>Score:<span>0</span></p>
+   </div>
+   <div>
+    <button id="start-button" class="start-button"><p>START</p></button>
+    <button id="resume-button" class="start-button hidden"><p>RESUME</p></button>
+    <button id="pause-button" class="start-button hidden"><p>PAUSE</p></button>
+   </div>
+   <div>
+    <button id="reset-button" class="reset-button"><p>RESET</p></button>
+   </div>  
+   <p class="game-score">Score:<span>0</span></p>
    
   </div>
 
-  <div id="game-board">
-   
-    <canvas id="canvas" width="800" height="700"></canvas>
-  </div>
-
-  <div class="game-over hidden">
-    <h1>You loose !</h1>
-    <button>Restart</button>
+  <div id="game-board"> 
+    
+    <canvas id="canvas" width="800" height="700"></canvas>  
+    <div class="game-over hidden">
+      <h1>You loose :(</h1>
+      <h3 id = "score-loose"/>
+    </div>
   </div>
 
   <script src="js/avatar.js"></script>
   <script src="js/ingredients.js"></script>
+  <script src="js/background.js"></script>
 
 <script type="text/javascript" src="js/index.js"></script>
 
