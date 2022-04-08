@@ -1,14 +1,8 @@
-/* document.querySelector("#start-button").addEventListener("click", () => {
-  const game = new Game();
-  game.start();
-  document.querySelector("#start-button").classList.add("hidden");
-  document.querySelector("#pause-button").classList.remove("hidden");
-}); */
-
 class Game {
   constructor() {
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
+    this.ctx.font = "20px Tahoma";
     this.fps = 60;
     this.moveSpeed = 5;
     this.spawnInterval = 1 * this.fps; // interval between ing falling
@@ -24,10 +18,12 @@ class Game {
     this.pauseGame = false;
     this.timer = 0;
     this.score = 0;
+    this.text = "Goal";
   }
 
   reset() {
     clearInterval(this.gameinterval);
+    document.removeEventListener("keydown", this.eventMove);
     this.clear();
     this.avatar.reset();
     this.ingr.reset();
@@ -37,7 +33,7 @@ class Game {
     this.moveSpeed = 5;
     this.spawnInterval = 1 * this.fps;
     this.pauseGame = false;
-    document.removeEventListener("keydown", this.eventMove);
+    document.querySelector(".game-over").classList.add("hidden");
   }
 
   // reset list of goal ing
@@ -49,7 +45,7 @@ class Game {
   start() {
     this.init();
     this.createEventListeners();
-    setInterval(() => this.update(), 1000 / this.fps);
+    this.gameinterval = setInterval(() => this.update(), 1000 / this.fps);
   }
 
   update() {
@@ -97,7 +93,9 @@ class Game {
 
   // draw goal burguer, current one, iterate and display ing on y
   drawGoal() {
-    let startY = 0;
+    this.ctx.fillText("To do:", 10, 30);
+    this.ctx.fillText("Picked:", this.canvas.width - 70, 30);
+    let startY = 40;
     this.breadGoal
       .slice()
       .reverse()
@@ -153,22 +151,13 @@ class Game {
     loose.classList.toggle("hidden");
     game.pauseGame = true;
     console.log(loose);
-    /*  if (this.drawLoose) {
-      ctx.font = "60px Arial";
-      ctx.fillStyle = "Black";
-      ctx.fillText("GAMEOVER!!!", 100, 100);
-    }*/
-  }
-
-  reset() {
-    let restart = document.querySelector(".pause-button");
-    restart.addEventListener("click", function () {
-      game.start();
-    });
+    let scoreLoose = document.querySelector("#score-loose");
+    scoreLoose.innerText = "Score: " + this.score * 10;
   }
 
   createEventListeners() {
-    document.addEventListener("keydown", (e) => this.avatar.move(e.key));
+    this.eventMove = (e) => this.avatar.move(e.key);
+    document.addEventListener("keydown", this.eventMove);
   }
 }
 
