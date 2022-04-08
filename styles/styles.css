@@ -15,7 +15,18 @@ body {
 
 .game-intro h1 {
   color: rgb(226, 226, 14);
- 
+ padding-top: 20px;
+}
+
+.game-intro img{
+  width: 80px;
+}
+
+.logo{
+  display: flex;
+  text-align: center;
+  column-gap: 20px;
+
 }
 
 #game-board {
@@ -48,7 +59,7 @@ transition-duration: 0.4s;
 text-decoration: none;
 overflow: hidden;
 cursor: pointer;
-
+background-color: #e9ee90;
 }
 
 .start-button{
@@ -62,8 +73,11 @@ transition-duration: 0.4s;
 text-decoration: none;
 overflow: hidden;
 cursor: pointer;
+background-color: #e9ee90;
 
 }
+
+
 
 
 /* .start-button:after {

@@ -75,7 +75,6 @@ class Game {
           this.addscore();
           this.breadCurrent.push(ingred);
         } else {
-          // this.gameover();
           this.drawGameOver();
           // alert("loose");
           break;
@@ -149,16 +148,17 @@ class Game {
     scoreCurrent.innerText = this.score * 10;
   }
 
-  /* drawGameOver() {
+  drawGameOver() {
     let loose = document.querySelector(".game-over");
     loose.classList.toggle("hidden");
+    game.pauseGame = true;
     console.log(loose);
     /*  if (this.drawLoose) {
       ctx.font = "60px Arial";
       ctx.fillStyle = "Black";
       ctx.fillText("GAMEOVER!!!", 100, 100);
-    } 
-  } */
+    }*/
+  }
 
   reset() {
     let restart = document.querySelector(".pause-button");
