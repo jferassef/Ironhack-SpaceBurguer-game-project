@@ -1,9 +1,9 @@
-document.querySelector("#start-button").addEventListener("click", () => {
+/* document.querySelector("#start-button").addEventListener("click", () => {
   const game = new Game();
   game.start();
   document.querySelector("#start-button").classList.add("hidden");
   document.querySelector("#pause-button").classList.remove("hidden");
-});
+}); */
 
 class Game {
   constructor() {
@@ -21,9 +21,23 @@ class Game {
       height: Infinity,
     }; // ing limit from falling
     this.lengthBreadGoal = 3;
+    this.pauseGame = false;
     this.timer = 0;
     this.score = 0;
-    this.drawLoose = null;
+  }
+
+  reset() {
+    clearInterval(this.gameinterval);
+    this.clear();
+    this.avatar.reset();
+    this.ingr.reset();
+    this.breadCurrent = [];
+    this.breadGoal = [];
+    this.lengthBreadGoal = 3;
+    this.moveSpeed = 5;
+    this.spawnInterval = 1 * this.fps;
+    this.pauseGame = false;
+    document.removeEventListener("keydown", this.eventMove);
   }
 
   // reset list of goal ing
@@ -39,6 +53,9 @@ class Game {
   }
 
   update() {
+    if (this.pauseGame) {
+      return;
+    }
     if (this.lengthBreadGoal === 6) {
       this.breadGoal = [];
       alert("win");
@@ -132,7 +149,7 @@ class Game {
     scoreCurrent.innerText = this.score * 10;
   }
 
-  drawGameOver() {
+  /* drawGameOver() {
     let loose = document.querySelector(".game-over");
     loose.classList.toggle("hidden");
     console.log(loose);
@@ -140,8 +157,8 @@ class Game {
       ctx.font = "60px Arial";
       ctx.fillStyle = "Black";
       ctx.fillText("GAMEOVER!!!", 100, 100);
-    } */
-  }
+    } 
+  } */
 
   reset() {
     let restart = document.querySelector(".pause-button");
@@ -154,3 +171,29 @@ class Game {
     document.addEventListener("keydown", (e) => this.avatar.move(e.key));
   }
 }
+
+const game = new Game();
+document.querySelector("#start-button").addEventListener("click", () => {
+  document.querySelector("#start-button").classList.add("hidden");
+  game.start();
+  document.querySelector("#pause-button").classList.remove("hidden");
+});
+
+document.querySelector("#pause-button").addEventListener("click", () => {
+  document.querySelector("#pause-button").classList.add("hidden");
+  document.querySelector("#resume-button").classList.remove("hidden");
+  game.pauseGame = true;
+});
+
+document.querySelector("#resume-button").addEventListener("click", () => {
+  document.querySelector("#resume-button").classList.add("hidden");
+  document.querySelector("#pause-button").classList.remove("hidden");
+  game.pauseGame = false;
+});
+
+document.querySelector("#reset-button").addEventListener("click", () => {
+  document.querySelector("#resume-button").classList.add("hidden");
+  document.querySelector("#pause-button").classList.add("hidden");
+  document.querySelector("#start-button").classList.remove("hidden");
+  game.reset();
+});

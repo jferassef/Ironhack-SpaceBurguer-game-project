@@ -54,6 +54,10 @@ class Ingredients {
     this.addRandomIngredient();
   }
 
+  reset() {
+    this.ingredients = [];
+  }
+
   // Creating the burguer goal with ingredients inside the bread
   createGoalBread(amountOfIng) {
     const insideIng = [];

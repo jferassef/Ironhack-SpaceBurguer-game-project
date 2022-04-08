@@ -12,6 +12,11 @@ class Avatar {
     this.init();
   }
 
+  reset() {
+    this.y = this.canvas.height - (this.height + 50);
+    this.x = (this.canvas.width - this.width) / 2;
+  }
+
   // image src
   init() {
     this.image = new Image();
