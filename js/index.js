@@ -68,7 +68,7 @@ class Game {
     if (this.pauseGame) {
       return;
     }
-    if (this.lengthBreadGoal === 6) {
+    if (this.lengthBreadGoal === 5) {
       this.breadGoal = [];
       // alert("win");
       this.ctx.fillText(
