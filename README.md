@@ -23,3 +23,7 @@ CSS STYLES: styles.css
 JavaScript: avatar.js (contains logic for the avatar)
 ingredients.js(logic for the ingredients)
 index.js(general logic of the game)
+
+DEPLOYED: https://jferassef.github.io/Ironhack-SpaceBurguer-game-project/
+URL: https://github.com/jferassef/Ironhack-SpaceBurguer-game-project/tree/78999bef89195a05d51fc8f9ea568fa481586640
+SLIDES: https://slides.com/jessicafernandezassef
