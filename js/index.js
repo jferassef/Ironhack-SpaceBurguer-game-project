@@ -66,7 +66,7 @@ class Game {
     if (this.pauseGame) {
       return;
     }
-    if (this.lengthBreadGoal === 4) {
+    if (this.lengthBreadGoal === 6) {
       this.breadGoal = [];
       // alert("win");
       this.ctx.fillText(
@@ -185,7 +185,9 @@ class Game {
 const game = new Game();
 document.querySelector("#start-button").addEventListener("click", () => {
   document.querySelector("#start-button").classList.add("hidden");
+
   game.start();
+
   document.querySelector("#pause-button").classList.remove("hidden");
 });
 
