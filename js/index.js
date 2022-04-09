@@ -44,6 +44,8 @@ class Game {
     this.breadCurrent = [];
     this.breadGoal = [];
     this.lengthBreadGoal = 3;
+    let scoreCurrent = document.querySelector(".game-score span");
+    scoreCurrent.innerText = 0;
     this.moveSpeed = 5;
     this.spawnInterval = 1 * this.fps;
     this.pauseGame = false;

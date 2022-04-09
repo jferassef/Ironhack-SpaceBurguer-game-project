@@ -117,6 +117,7 @@ class Ingredients {
     const maxY = obj.y + obj.height;
     const withinX = minX <= ingr.x && ingr.x + ingr.width <= maxX;
     const withinY = minY <= ingr.y && ingr.y + ingr.height <= maxY;
+
     //  console.log({ minX, minY, maxX, maxY, withinX, withinY, ingr });
     /*  if (withinX && withinY) {
       console.debug("intersect");
