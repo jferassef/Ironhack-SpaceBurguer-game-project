@@ -29,7 +29,7 @@ class Game {
       300
     );
     this.ctx.fillText(
-      "WARNING: CLIENT DIES IF INGREDIENTS ARE NOT IN THE RIGHT ORDER",
+      "WARNING: CLIENT LIKES INGREDIENTS ARE NOT IN THE RIGHT ORDER",
       this.canvas.width / 2 - 350,
       350
     );
