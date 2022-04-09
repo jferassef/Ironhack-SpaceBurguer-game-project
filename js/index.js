@@ -18,7 +18,21 @@ class Game {
     this.pauseGame = false;
     this.timer = 0;
     this.score = 0;
-    this.text = "Goal";
+    this.ctx.fillText(
+      "HI PLAYER! WELCOME TO SPACE BURGUER RESTAURANT",
+      this.canvas.width / 2 - 260,
+      200
+    );
+    this.ctx.fillText(
+      "INSTRUCTIONS: Use the left and right arrow to control the avatar",
+      this.canvas.width / 2 - 290,
+      300
+    );
+    this.ctx.fillText(
+      "WARNING: CLIENT LIKES INGREDIENTS ARE NOT IN THE RIGHT ORDER",
+      this.canvas.width / 2 - 350,
+      350
+    );
   }
 
   reset() {
@@ -56,7 +70,7 @@ class Game {
       this.breadGoal = [];
       // alert("win");
       this.ctx.fillText(
-        "CONGRATS, YOU WIN",
+        "CONGRATS, YOU WIN!! :)",
         this.canvas.width / 2 - 100,
         this.canvas.height / 2
       );
@@ -100,7 +114,7 @@ class Game {
 
   // draw goal burguer, current one, iterate and display ing on y
   drawGoal() {
-    this.ctx.fillText("To do:", 10, 30);
+    this.ctx.fillText("ORDER TO DO:", 10, 30);
     this.ctx.fillText("Picked:", this.canvas.width - 70, 30);
     let startY = 40;
     this.breadGoal

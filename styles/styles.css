@@ -15,7 +15,9 @@ body {
 
 .game-intro h1 {
   color: rgb(226, 226, 14);
- padding-top: 20px;
+ padding-top: 10px;
+ font-size: 50px;
+
 }
 
 .game-intro img{
@@ -53,54 +55,26 @@ body {
   height: 60px;
   width: 150px;
   border-radius: 5%;
-  background-color: beige;
-  
-transition-duration: 0.4s; /* Safari */
-transition-duration: 0.4s;
 text-decoration: none;
 overflow: hidden;
 cursor: pointer;
 background-color: #e9ee90;
+font-size: xx-large;
 }
 
 .start-button{
   height: 60px;
   width: 150px;
   border-radius: 5%;
-  background-color: beige;
   
-transition-duration: 0.4s; /* Safari */
-transition-duration: 0.4s;
 text-decoration: none;
 overflow: hidden;
 cursor: pointer;
 background-color: #e9ee90;
+font-size: xx-large;
 
 }
 
-
-
-
-/* .start-button:after {
-  content: "";
-  background: #e9ee90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-.start-button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
- */
 #canvas{
   background-color: #e9ee90;
   width: 60%;
@@ -125,4 +99,10 @@ color:black;
 
 
 
+}
+
+
+.game-score{
+  background-color: #e9ee90;
+  font-size: xx-large;
 }
