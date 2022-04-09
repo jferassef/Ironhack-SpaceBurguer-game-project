@@ -19,8 +19,8 @@ class Game {
     this.timer = 0;
     this.score = 0;
     this.ctx.fillText(
-      "HI PLAYER! WELCOME TO SPACE BURGUER RESTAURANT",
-      this.canvas.width / 2 - 260,
+      "HI PLAYER! WELCOME TO THE 3 MILKYWAY STARS SPACE BURGUER RESTAURANT",
+      this.canvas.width / 2 - 360,
       200
     );
     this.ctx.fillText(
@@ -29,8 +29,8 @@ class Game {
       300
     );
     this.ctx.fillText(
-      "WARNING: CLIENT LIKES INGREDIENTS ARE NOT IN THE RIGHT ORDER",
-      this.canvas.width / 2 - 350,
+      "WARNING: CLIENT LIKES INGREDIENTS  IN THE RIGHT ORDER",
+      this.canvas.width / 2 - 300,
       350
     );
   }
